@@ -22,7 +22,7 @@ class Board {
 
         bool check_validity( Piece& u_piece, Direction u_direction ) const;
 
-        bool check_row( const int row );
+        bool check_row( const int row ) const;
         void destroy_row( const int row );
 
         Piece *new_piece( const int type );

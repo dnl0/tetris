@@ -1,4 +1,4 @@
-#include "Game.hpp"
+#include <tetris/Game.hpp>
 
 #include <unistd.h>
 
@@ -11,8 +11,8 @@
 
 Game::Game( )
     :
-    board( new Board ),
-    piece( new Piece( get_random() ) )
+    board( std::make_unique<Board> ( ) ),
+    piece( std::make_unique<Piece> ( get_random() ) )
 {
     setup();
 

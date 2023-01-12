@@ -1,2 +1,10 @@
-all:
-	g++ -std=c++11 Piece.cpp Board.cpp Graphics.cpp -lncurses Game.cpp -pthread main.cpp -o main.o
+TARGET = tetris
+
+CXX := g++
+CXXFLAGS := -std=c++14 -lncurses -pthread
+
+SOURCES = $(wildcard ./src/*.cpp)
+INCLUDES = ./include
+
+$(TARGET):
+	$(CXX) $(CXXFLAGS) -I$(INCLUDES) $(SOURCES) main.cpp -o $(TARGET)

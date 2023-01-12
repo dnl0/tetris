@@ -1,13 +1,9 @@
-#include <iostream>
 #include <memory>
-#include <unistd.h>
 
-#include "Game.hpp"
+#include <tetris/Game.hpp>
 
 auto
 main() -> int
 {
-    std::unique_ptr <Game> tetris ( new Game() );
-
-    return 0;
+    std::unique_ptr <Game> tetris = std::make_unique<Game> ( );
 }

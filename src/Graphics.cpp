@@ -1,4 +1,4 @@
-#include "Graphics.hpp"
+#include <tetris/Graphics.hpp>
 
 bool
 printn( Board& b, WINDOW* w )

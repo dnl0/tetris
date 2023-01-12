@@ -1,6 +1,6 @@
-#include "Board.hpp"
+#include <tetris/Board.hpp>
 
-Board::Board()
+Board::Board( )
     :
     board ( BOARD_HEIGHT, std::vector<int> (BOARD_WIDTH, 0) ) // 20x10 vector filled with 0
 {
@@ -30,13 +30,13 @@ Board::check_validity( Piece& u_piece, Direction u_direction ) const
         }
         if ( u_piece.get_y(i) == BOARD_HEIGHT ) // hits bottom
         {
-            u_piece.dead = true;
+            u_piece.kill( );
             return false;
         }
         if ( board[ u_piece.get_y(i) ][ u_piece.get_x(i) ] == -1 ) // hits dead piece
         {
             if ( u_direction == Down ) {
-                u_piece.dead = true;
+                u_piece.kill( );
             }
             return false;
         }
@@ -46,7 +46,7 @@ Board::check_validity( Piece& u_piece, Direction u_direction ) const
 }
 
 bool
-Board::check_row( const int row )
+Board::check_row( const int row ) const
 {
     for (int i = 0; i < BOARD_WIDTH; ++i) {
         if ( board[row][i] != -1 ) {
@@ -92,8 +92,8 @@ Board::move_piece( Piece& u_piece, const Direction u_direction )
 
     if ( !check_validity( u_piece, u_direction ) ) {
         u_piece.revert( );
-        if ( u_piece.dead ) {
-            init_piece( u_piece, -1 );
+        if ( u_piece.is_dead( ) ) {
+            init_piece( u_piece, -1 ); // current piece's coordinates become dead cells
 
             for (int i = 0; i < 4; ++i) {
                 if ( check_row( u_piece.get_y(i) ) ) {

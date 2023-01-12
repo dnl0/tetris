@@ -1,4 +1,4 @@
-#include "Piece.hpp"
+#include <tetris/Piece.hpp>
 
 Piece::Piece( int u_type )
     :
@@ -9,7 +9,6 @@ Piece::Piece( int u_type )
         return;
     }
 
-    dead = false;
     init( );
 }
 
